@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GUI } from 'dat.gui'
 import { emoteTypes, statesTypes } from './constants'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { EmoteType, ModelApi, ModelsActions } from './interface'
+import { EmoteType, ModelActions, ModelApi, ModelsActions } from './interface'
 import { handleResize, createCamera, createRenderer, createStats } from './config'
 import { addCameraGUI } from './GUI/camera'
 import { addPlane } from './material/plane'
@@ -120,7 +120,7 @@ function createGUI(model: THREE.Group<THREE.Object3DEventMap>, animations: THREE
     expressionFolder.open()
 }
 
-function fadeToAction(name: string, duration: number) {
+function fadeToAction(name: ModelActions, duration: number) {
     previousAction = activeAction
     activeAction = actions[name]
 
@@ -142,3 +142,6 @@ function animate() {
 }
 
 animate()
+setTimeout(() => {
+    fadeToAction('Death', 0.5)
+}, 5000)

@@ -10,3 +10,5 @@ export interface ModelApi {
 
 export type StateType = 'Idle' | 'Walking' | 'Running' | 'Dance' | 'Death' | 'Sitting' | 'Standing'
 export type EmoteType = 'Jump' | 'Yes' | 'No' | 'Wave' | 'Punch' | 'ThumbsUp'
+
+export type ModelActions = StateType | EmoteType
