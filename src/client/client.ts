@@ -1,18 +1,27 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GUI } from 'dat.gui'
-import { emoteTypes, statesTypes } from './constants'
+import { emoteTypes, moveSpeed, runSpeed, statesTypes } from './constants'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { EmoteType, ModelActions, ModelApi, ModelsActions } from './interface'
-import { handleResize, createCamera, createRenderer, createStats } from './config'
+import {
+    ControlButtonKeys,
+    EmoteType,
+    KeyMap,
+    ModelActions,
+    ModelApi,
+    ModelsActions,
+} from './interface'
+import { handleResize, createCamera, createRenderer, createStats, createAxesHelper } from './config'
 import { addCameraGUI } from './GUI/camera'
-import { addPlane } from './material/plane'
-import { addGridHelper } from './material/gridHelper'
+import { createPlane } from './material/plane'
+import { createGridHelper } from './material/gridHelper'
 import { addEmotesGUI, addStatesGUI } from './GUI/models'
 const scene = new THREE.Scene()
 const camera = createCamera()
 const renderer = createRenderer()
 const stats = createStats()
+const axesHelper = createAxesHelper()
+scene.add(axesHelper)
 let mixer: THREE.AnimationMixer,
     actions: ModelsActions,
     activeAction: THREE.AnimationAction,
@@ -36,11 +45,11 @@ const lightHelper = new THREE.DirectionalLightHelper(light)
 scene.add(lightHelper)
 
 // plane
-const plane = addPlane(scene)
-
+const plane = createPlane()
+scene.add(plane)
 // grid helper
-const gridHelper = addGridHelper(scene)
-
+const gridHelper = createGridHelper()
+// scene.add(gridHelper)
 // loader config
 const loader = new GLTFLoader()
 let model: THREE.Group<THREE.Object3DEventMap>
@@ -49,6 +58,7 @@ loader.load(
     function (gltf) {
         model = gltf.scene
         scene.add(model)
+        camera.lookAt(model.position)
 
         createGUI(model, gltf.animations)
     },
@@ -141,7 +151,111 @@ function animate() {
     stats.update()
 }
 
+const keyMap: KeyMap = {
+    w: false,
+    a: false,
+    s: false,
+    d: false,
+    arrowup: false,
+    arrowleft: false,
+    arrowdown: false,
+    arrowright: false,
+    shift: false,
+}
+
+const getSpeedAtDiagonal = (speed: number) => {
+    // calculate by pythagoras theorem (a^2 + b^2 = c^2) where a = b
+    return speed / 2
+}
+
+const runLeft = (speed: number) => {
+    model.position.x += speed
+    model.rotation.y = Math.PI / 2
+}
+
+const runRight = (speed: number) => {
+    model.position.x -= speed
+    model.rotation.y = -Math.PI / 2
+}
+
+const runUp = (speed: number) => {
+    model.position.z += speed
+    model.rotation.y = 0
+}
+
+const runDown = (speed: number) => {
+    model.position.z -= speed
+    model.rotation.y = Math.PI
+}
+
+const runDownLeft = (speed: number) => {
+    runDown(getSpeedAtDiagonal(speed))
+    runLeft(getSpeedAtDiagonal(speed))
+    model.rotation.y = Math.PI / 2 + Math.PI / 4
+}
+
+const runDownRight = (speed: number) => {
+    runDown(getSpeedAtDiagonal(speed))
+    runRight(getSpeedAtDiagonal(speed))
+    model.rotation.y = -(Math.PI / 2 + Math.PI / 4)
+}
+
+const runUpLeft = (speed: number) => {
+    runUp(getSpeedAtDiagonal(speed))
+    runLeft(getSpeedAtDiagonal(speed))
+    model.rotation.y = Math.PI / 2 - Math.PI / 4
+}
+
+const runUpRight = (speed: number) => {
+    runUp(getSpeedAtDiagonal(speed))
+    runRight(getSpeedAtDiagonal(speed))
+    model.rotation.y = -(Math.PI / 2 - Math.PI / 4)
+}
+
+document.onkeydown = (e) => {
+    const pressKey = e.key.toLowerCase() as ControlButtonKeys
+
+    keyMap[pressKey] = true
+
+    const speed = keyMap['shift'] ? runSpeed : moveSpeed
+
+    if (keyMap['arrowdown'] || keyMap['s']) {
+        if (keyMap['arrowleft'] || keyMap['a']) {
+            runDownLeft(speed)
+        } else if (keyMap['arrowright'] || keyMap['d']) {
+            runDownRight(speed)
+        } else {
+            runDown(speed)
+        }
+        return
+    }
+
+    if (keyMap['arrowup'] || keyMap['w']) {
+        if (keyMap['arrowleft'] || keyMap['a']) {
+            runUpLeft(speed)
+        } else if (keyMap['arrowright'] || keyMap['d']) {
+            runUpRight(speed)
+        } else {
+            runUp(speed)
+        }
+
+        return
+    }
+
+    if (keyMap['arrowleft'] || keyMap['a']) {
+        runLeft(speed)
+        return
+    }
+
+    if (keyMap['arrowright'] || keyMap['d']) {
+        runRight(speed)
+        return
+    }
+}
+
+document.onkeyup = function (e) {
+    const pressKey = e.key.toLowerCase() as ControlButtonKeys
+    keyMap[pressKey] = false
+}
+
 animate()
-setTimeout(() => {
-    fadeToAction('Death', 0.5)
-}, 5000)

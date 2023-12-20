@@ -9,9 +9,11 @@ export const createCamera = (): THREE.PerspectiveCamera => {
         0.1,
         1000
     )
-    camera.position.x = 5
-    camera.position.y = 2
-    camera.position.z = 2
+    camera.position.x = 0
+    camera.position.y = 20
+    camera.position.z = -12
+
+    camera.lookAt(100, 100, 100)
 
     return camera
 }
@@ -43,4 +45,9 @@ export const createStats = (): Stats => {
     const stats = new Stats()
     document.body.appendChild(stats.dom)
     return stats
+}
+
+export const createAxesHelper = (): THREE.AxesHelper => {
+    const axesHelper = new THREE.AxesHelper(5)
+    return axesHelper
 }
