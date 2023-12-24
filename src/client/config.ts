@@ -13,16 +13,15 @@ export const createCamera = (): THREE.PerspectiveCamera => {
     camera.position.y = 20
     camera.position.z = -12
 
-    camera.lookAt(100, 100, 100)
-
     return camera
 }
 
 export const createRenderer = (): THREE.WebGLRenderer => {
     const renderer = new THREE.WebGLRenderer()
+    renderer.shadowMap.enabled = true
+
     renderer.setSize(window.innerWidth, window.innerHeight)
     document.body.appendChild(renderer.domElement)
-
     return renderer
 }
 
@@ -53,19 +52,20 @@ export const createAxesHelper = (): THREE.AxesHelper => {
 }
 
 export const createLight = () => {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2)
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 5)
-    dirLight.position.set(-60, 100, -10)
+    const dirLight = new THREE.DirectionalLight(0xffffff, 3)
+    dirLight.position.set(-60, 50, -10)
     dirLight.castShadow = true
     dirLight.shadow.camera.top = 50
     dirLight.shadow.camera.bottom = -50
     dirLight.shadow.camera.left = -50
     dirLight.shadow.camera.right = 50
     dirLight.shadow.camera.near = 0.1
-    dirLight.shadow.camera.far = 200
+    dirLight.shadow.camera.far = 500
     dirLight.shadow.mapSize.width = 4096
     dirLight.shadow.mapSize.height = 4096
+    dirLight.castShadow = true
 
     return { ambientLight, dirLight }
 }

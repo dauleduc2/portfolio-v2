@@ -12,12 +12,13 @@ import {
 import { createPlane } from './material/plane'
 import { CharacterControls } from './model/characterControl'
 import { KeyDisplay } from './utils/key'
+import { addTrees } from './material/tree'
 const scene = new THREE.Scene()
 const camera = createCamera()
 const renderer = createRenderer()
 const stats = createStats()
-const axesHelper = createAxesHelper()
-scene.add(axesHelper)
+// const axesHelper = createAxesHelper()
+// scene.add(axesHelper)
 
 new OrbitControls(camera, renderer.domElement)
 const render = () => {
@@ -38,9 +39,13 @@ scene.add(lightHelper)
 // plane
 const plane = createPlane()
 scene.add(plane)
+plane.receiveShadow = true
 // grid helper
 // const gridHelper = createGridHelper()
 // scene.add(gridHelper)
+
+// tree
+addTrees(scene)
 
 // CONTROLS
 const orbitControls = new OrbitControls(camera, renderer.domElement)
@@ -77,7 +82,7 @@ loader.load(
             camera,
             'Idle'
         )
-
+        model.receiveShadow = true
         model.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI)
     },
     undefined,

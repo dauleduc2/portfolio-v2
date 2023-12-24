@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { A, D, DIRECTIONS, S, W } from '../utils/key'
+import { moveSpeed, runSpeed } from '../constants/config'
 
 export class CharacterControls {
     model: THREE.Group
@@ -21,8 +22,8 @@ export class CharacterControls {
 
     // constants
     fadeDuration: number = 0.2
-    runVelocity = 5
-    walkVelocity = 2
+    runVelocity = runSpeed
+    walkVelocity = moveSpeed
 
     constructor(
         model: THREE.Group,
@@ -66,7 +67,6 @@ export class CharacterControls {
         }
 
         if (this.currentAction != play) {
-            console.log('diff', this.currentAction, play)
             const toPlay = this.animationsMap.get(play)
             const current = this.animationsMap.get(this.currentAction)
 

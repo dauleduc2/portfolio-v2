@@ -26,3 +26,11 @@ export type ControlButtonKeys =
 export type KeyMap = {
     [key in ControlButtonKeys]: boolean
 }
+
+export type TreeType = 'lowTree' | 'highTree'
+
+export interface TreeItem {
+    type: TreeType
+    position: THREE.Vector3
+    rotation: THREE.Euler
+}
