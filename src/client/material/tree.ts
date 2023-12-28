@@ -1,25 +1,46 @@
 import * as THREE from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
-import { TREE_LIST, TREE_SCALE } from '../constants/tree'
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
+
+import { TREE_LIST, SING_TREE_SCALE, DOUBLE_TREE_SCALE } from '../constants/tree'
 
 const fbxLoader = new FBXLoader()
-
+const objLoader = new OBJLoader()
+const mtlLoader = new MTLLoader()
 export const addTrees = async (scene: THREE.Scene) => {
-    const lowTree = await fbxLoader.loadAsync('models/tree/Tree low.FBX')
-    lowTree.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-            child.castShadow = true
-            child.receiveShadow = true
-        }
+    const lowTree = await fbxLoader.loadAsync('models/tree/single_tree.FBX')
+    const doubleTree = await mtlLoader
+        .loadAsync('models/tree/Lowpoly_tree_sample.mtl')
+        .then((materials) => {
+            // change tree color
+            materials.preload()
+
+            objLoader.setMaterials(materials)
+
+            return objLoader.loadAsync('models/tree/double_tree.obj')
+        })
+
+    new Array(lowTree, doubleTree).forEach((tree) => {
+        tree.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+                child.castShadow = true
+                child.receiveShadow = true
+            }
+        })
     })
-    lowTree.scale.set(TREE_SCALE, TREE_SCALE, TREE_SCALE)
+
+    lowTree.scale.set(SING_TREE_SCALE, SING_TREE_SCALE, SING_TREE_SCALE)
+    doubleTree.scale.set(DOUBLE_TREE_SCALE, DOUBLE_TREE_SCALE, DOUBLE_TREE_SCALE)
     TREE_LIST.forEach((tree) => {
         const { type, position, rotation } = tree
         let treeMesh
         switch (type) {
             case 'lowTree':
                 treeMesh = lowTree.clone()
-
+                break
+            case 'doubleTree':
+                treeMesh = doubleTree.clone()
                 break
             default:
                 break

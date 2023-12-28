@@ -47,7 +47,8 @@ export const createStats = (): Stats => {
 }
 
 export const createAxesHelper = (): THREE.AxesHelper => {
-    const axesHelper = new THREE.AxesHelper(5)
+    const axesHelper = new THREE.AxesHelper(10)
+
     return axesHelper
 }
 

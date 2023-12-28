@@ -13,12 +13,13 @@ import { createPlane } from './material/plane'
 import { CharacterControls } from './model/characterControl'
 import { KeyDisplay } from './utils/key'
 import { addTrees } from './material/tree'
+import { createBillboard } from './material/billboard'
 const scene = new THREE.Scene()
 const camera = createCamera()
 const renderer = createRenderer()
 const stats = createStats()
-// const axesHelper = createAxesHelper()
-// scene.add(axesHelper)
+const axesHelper = createAxesHelper()
+scene.add(axesHelper)
 
 new OrbitControls(camera, renderer.domElement)
 const render = () => {
@@ -38,14 +39,19 @@ scene.add(lightHelper)
 
 // plane
 const plane = createPlane()
+// const { leavesMaterial, instancedMesh } = createGrassMaterial()
+
 scene.add(plane)
-plane.receiveShadow = true
+// scene.add(instancedMesh)
 // grid helper
 // const gridHelper = createGridHelper()
 // scene.add(gridHelper)
 
 // tree
 addTrees(scene)
+
+// billboard
+createBillboard(scene)
 
 // CONTROLS
 const orbitControls = new OrbitControls(camera, renderer.domElement)
@@ -128,6 +134,10 @@ function animate() {
         characterControls.update(mixerUpdateDelta, keysPressed)
     }
     orbitControls.update()
+
+    // Hand a time variable to vertex shader for wind displacement.
+    // leavesMaterial.uniforms.time.value = clock.getElapsedTime()
+    // leavesMaterial.uniformsNeedUpdate = true
 
     render()
     stats.update()

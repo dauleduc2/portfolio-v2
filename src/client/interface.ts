@@ -27,7 +27,7 @@ export type KeyMap = {
     [key in ControlButtonKeys]: boolean
 }
 
-export type TreeType = 'lowTree' | 'highTree'
+export type TreeType = 'lowTree' | 'doubleTree'
 
 export interface TreeItem {
     type: TreeType
