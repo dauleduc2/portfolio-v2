@@ -1,8 +1,7 @@
-import { TreeItem } from '../interface'
 import * as THREE from 'three'
+import { TreeItem } from '../interfaces/tree'
 
 export const SING_TREE_SCALE = 0.1
-export const DOUBLE_TREE_SCALE = 0.5
 export const LOW_TREE_Y = -2.5
 
 const TREE_FOR_EACH_LINE = 7

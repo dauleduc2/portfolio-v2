@@ -10,8 +10,8 @@ export const createCamera = (): THREE.PerspectiveCamera => {
         1000
     )
     camera.position.x = 0
-    camera.position.y = 20
-    camera.position.z = -12
+    camera.position.y = 30
+    camera.position.z = 60
 
     return camera
 }

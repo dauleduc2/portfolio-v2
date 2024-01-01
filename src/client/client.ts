@@ -10,10 +10,11 @@ import {
     createLight,
 } from './config'
 import { createPlane } from './material/plane'
-import { CharacterControls } from './model/characterControl'
+import { CharacterControls } from './models/characterControl'
 import { KeyDisplay } from './utils/key'
 import { addTrees } from './material/tree'
-import { createWoodenSign } from './material/woodenSign'
+import { addWoodenSign } from './material/woodenSign'
+import { createIntroductionSection } from './sections/introduction'
 const scene = new THREE.Scene()
 const camera = createCamera()
 const renderer = createRenderer()
@@ -38,15 +39,15 @@ const plane = createPlane()
 
 scene.add(plane)
 
-// grid helper
-// const gridHelper = createGridHelper()
-// scene.add(gridHelper)
-
 // tree
 addTrees(scene)
 
 // wooden sign
-createWoodenSign(scene)
+addWoodenSign(scene)
+
+// add introduction section
+
+createIntroductionSection(scene)
 
 // CONTROLS
 const orbitControls = new OrbitControls(camera, renderer.domElement)
