@@ -13,7 +13,7 @@ import { createPlane } from './material/plane'
 import { CharacterControls } from './model/characterControl'
 import { KeyDisplay } from './utils/key'
 import { addTrees } from './material/tree'
-import { createBillboard } from './material/billboard'
+import { createWoodenSign } from './material/woodenSign'
 const scene = new THREE.Scene()
 const camera = createCamera()
 const renderer = createRenderer()
@@ -21,7 +21,6 @@ const stats = createStats()
 const axesHelper = createAxesHelper()
 scene.add(axesHelper)
 
-new OrbitControls(camera, renderer.domElement)
 const render = () => {
     renderer.render(scene, camera)
 }
@@ -34,15 +33,11 @@ const { ambientLight, dirLight } = createLight()
 scene.add(ambientLight)
 scene.add(dirLight)
 
-const lightHelper = new THREE.DirectionalLightHelper(dirLight)
-scene.add(lightHelper)
-
 // plane
 const plane = createPlane()
-// const { leavesMaterial, instancedMesh } = createGrassMaterial()
 
 scene.add(plane)
-// scene.add(instancedMesh)
+
 // grid helper
 // const gridHelper = createGridHelper()
 // scene.add(gridHelper)
@@ -50,15 +45,17 @@ scene.add(plane)
 // tree
 addTrees(scene)
 
-// billboard
-createBillboard(scene)
+// wooden sign
+createWoodenSign(scene)
 
 // CONTROLS
 const orbitControls = new OrbitControls(camera, renderer.domElement)
 orbitControls.minDistance = 5
 orbitControls.maxDistance = 15
-orbitControls.enablePan = false
 orbitControls.maxPolarAngle = Math.PI / 2 - 0.05
+orbitControls.enableDamping = true
+orbitControls.dampingFactor = 0.05
+
 orbitControls.update()
 
 // loader config
@@ -134,10 +131,6 @@ function animate() {
         characterControls.update(mixerUpdateDelta, keysPressed)
     }
     orbitControls.update()
-
-    // Hand a time variable to vertex shader for wind displacement.
-    // leavesMaterial.uniforms.time.value = clock.getElapsedTime()
-    // leavesMaterial.uniformsNeedUpdate = true
 
     render()
     stats.update()

@@ -10,18 +10,8 @@ const objLoader = new OBJLoader()
 const mtlLoader = new MTLLoader()
 export const addTrees = async (scene: THREE.Scene) => {
     const lowTree = await fbxLoader.loadAsync('models/tree/single_tree.FBX')
-    const doubleTree = await mtlLoader
-        .loadAsync('models/tree/Lowpoly_tree_sample.mtl')
-        .then((materials) => {
-            // change tree color
-            materials.preload()
 
-            objLoader.setMaterials(materials)
-
-            return objLoader.loadAsync('models/tree/double_tree.obj')
-        })
-
-    new Array(lowTree, doubleTree).forEach((tree) => {
+    new Array(lowTree).forEach((tree) => {
         tree.traverse((child) => {
             if (child instanceof THREE.Mesh) {
                 child.castShadow = true
@@ -31,7 +21,7 @@ export const addTrees = async (scene: THREE.Scene) => {
     })
 
     lowTree.scale.set(SING_TREE_SCALE, SING_TREE_SCALE, SING_TREE_SCALE)
-    doubleTree.scale.set(DOUBLE_TREE_SCALE, DOUBLE_TREE_SCALE, DOUBLE_TREE_SCALE)
+
     TREE_LIST.forEach((tree) => {
         const { type, position, rotation } = tree
         let treeMesh
@@ -39,9 +29,7 @@ export const addTrees = async (scene: THREE.Scene) => {
             case 'lowTree':
                 treeMesh = lowTree.clone()
                 break
-            case 'doubleTree':
-                treeMesh = doubleTree.clone()
-                break
+
             default:
                 break
         }
