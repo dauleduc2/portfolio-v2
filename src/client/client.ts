@@ -42,7 +42,7 @@ const plane = createPlane()
 scene.add(plane)
 
 // tree
-// addTrees(scene)
+addTrees(scene)
 
 // wooden sign
 addWoodenSign(scene)
