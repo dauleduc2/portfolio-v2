@@ -53,10 +53,10 @@ export const createAxesHelper = (): THREE.AxesHelper => {
 }
 
 export const createLight = () => {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5)
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 3)
-    dirLight.position.set(-60, 50, -10)
+    const dirLight = new THREE.DirectionalLight(0xffffff, 3.5)
+    dirLight.position.set(60, 50, -10)
     dirLight.castShadow = true
     dirLight.shadow.camera.top = 50
     dirLight.shadow.camera.bottom = -50

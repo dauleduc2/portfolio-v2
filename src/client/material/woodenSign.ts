@@ -8,15 +8,15 @@ export const addWoodenSign = async (scene: THREE.Scene) => {
     const certificateWoodenSign = woodenSign('Certificate')
     const introductionWoodenSign = woodenSign('Introduction')
 
-    skillsWoodenSign.position.set(-14, 0, -11)
+    skillsWoodenSign.position.set(-8, 0, -8)
 
-    experienceWoodenSign.position.set(15, 0, 7)
+    experienceWoodenSign.position.set(8, 0, 8)
     experienceWoodenSign.rotation.y = Math.PI
 
-    certificateWoodenSign.position.set(-10, 0, 12)
+    certificateWoodenSign.position.set(-8, 0, 8)
     certificateWoodenSign.rotation.y = Math.PI / 2
 
-    introductionWoodenSign.position.set(11, 0, -14)
+    introductionWoodenSign.position.set(8, 0, -8)
     introductionWoodenSign.rotation.y = -Math.PI / 2
 
     scene.add(skillsWoodenSign)

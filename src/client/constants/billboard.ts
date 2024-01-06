@@ -1,1 +1,2 @@
 export const SIMPLE_BILLBOARD_SCALE = 3
+export const BIG_BILLBOARD_SCALE = 30

@@ -5,30 +5,61 @@ import { createTextModel } from './text'
 import { uuidv4 } from '../utils/uuid'
 const loader = new GLTFLoader()
 
+let retroTV: THREE.Group<THREE.Object3DEventMap>
+let TV: THREE.Group<THREE.Object3DEventMap>
+let TVs: THREE.Group<THREE.Object3DEventMap>
+let flatTV: THREE.Group<THREE.Object3DEventMap>
+
 export const createTVModel = async () => {
     const { createText } = await createTextModel()
-    const retroTVGLTF = await loader.loadAsync('/models/TV/retro_tv.glb')
-    const TVGLTF = await loader.loadAsync('/models/TV/TV.glb')
-    const TVsGLTF = await loader.loadAsync('/models/TV/tvs.glb')
-    const flatTVGLTF = await loader.loadAsync('/models/TV/flat_screen_TV.glb')
-    const retroTV = retroTVGLTF.scene
-    const TV = TVGLTF.scene
-    const TVs = TVsGLTF.scene
-    const flatTV = flatTVGLTF.scene
 
-    new Array(retroTV, TV, TVs, flatTV).forEach((tree) => {
-        tree.traverse((child) => {
+    if (!retroTV) {
+        const retroTVGLTF = await loader.loadAsync('/models/TV/retro_tv.glb')
+        retroTV = retroTVGLTF.scene
+        retroTV.scale.set(RETRO_TV_SCALE, RETRO_TV_SCALE, RETRO_TV_SCALE)
+        retroTV.traverse((child) => {
             if (child instanceof THREE.Mesh) {
                 child.castShadow = true
                 child.receiveShadow = true
             }
         })
-    })
+    }
 
-    retroTV.scale.set(RETRO_TV_SCALE, RETRO_TV_SCALE, RETRO_TV_SCALE)
-    TV.scale.set(TV_SCALE, TV_SCALE, TV_SCALE)
-    TVs.scale.set(TVs_SCALE, TVs_SCALE, TVs_SCALE)
-    flatTV.scale.set(FLAT_TV_SCALE, FLAT_TV_SCALE, FLAT_TV_SCALE)
+    if (!TV) {
+        const TVGLTF = await loader.loadAsync('/models/TV/TV.glb')
+        TV = TVGLTF.scene
+        TV.scale.set(TV_SCALE, TV_SCALE, TV_SCALE)
+        TV.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+                child.castShadow = true
+                child.receiveShadow = true
+            }
+        })
+    }
+
+    if (!TVs) {
+        const TVsGLTF = await loader.loadAsync('/models/TV/tvs.glb')
+        TVs = TVsGLTF.scene
+        TVs.scale.set(TVs_SCALE, TVs_SCALE, TVs_SCALE)
+        TVs.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+                child.castShadow = true
+                child.receiveShadow = true
+            }
+        })
+    }
+
+    if (!flatTV) {
+        const flatTVGLTF = await loader.loadAsync('/models/TV/flat_screen_TV.glb')
+        flatTV = flatTVGLTF.scene
+        flatTV.scale.set(FLAT_TV_SCALE, FLAT_TV_SCALE, FLAT_TV_SCALE)
+        flatTV.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+                child.castShadow = true
+                child.receiveShadow = true
+            }
+        })
+    }
 
     const createRetroTV = () => {
         const cloneCabinet = retroTV.clone()
@@ -50,7 +81,12 @@ export const createTVModel = async () => {
                 const previousText = cloneTV.getObjectByName(currentTextName)
                 if (previousText) cloneTV.remove(previousText)
             }
-            const newText = createText(text[currentIndex], { size: 1, color: 'white' })
+            const newText = createText(text[currentIndex], {
+                size: 1,
+                color: 'white',
+                type: 'bold',
+            })
+            newText.geometry.center()
             const newTextUUID = uuidv4()
             newText.name = newTextUUID
             currentTextName = newTextUUID

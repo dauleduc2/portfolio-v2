@@ -2,16 +2,17 @@ import * as THREE from 'three'
 import { createClassroomModel } from '../models/classroom'
 import { createBillboardModel } from '../models/billboard'
 import { ONE_DEGREE_IN_RADIANS } from '../constants/math'
-import { createWoodenWallModel } from '../models/woodenWall'
+import { createWallModel } from '../models/woodenWall'
 import { createTVModel } from '../models/TV'
 import { createCabinet } from '../models/cabinet'
+import { createTextModel } from '../models/text'
 
 export const createIntroductionSection = async (scene: THREE.Scene) => {
     const BASE_X = -20
-    const BASE_Z = -110
-
+    const BASE_Z = -92
+    const { createText } = await createTextModel()
     const { classroom } = await createClassroomModel()
-    const { woodenWall } = await createWoodenWallModel()
+    const { woodenWall } = await createWallModel()
     const { TV, TVs, retroTV, flatTV } = await createTVModel()
     const { cabinet } = await createCabinet()
     const FPTClassroom = classroom({
@@ -40,8 +41,6 @@ export const createIntroductionSection = async (scene: THREE.Scene) => {
     FPTClassroom.add(educationBillboard)
     FPTClassroom.add(woodenWallModel)
 
-    const axesHelper = new THREE.AxesHelper(10)
-
     // introduction
     const introductionGroup = new THREE.Group()
     const TVWithCabinet = new THREE.Group()
@@ -50,6 +49,16 @@ export const createIntroductionSection = async (scene: THREE.Scene) => {
     const TVsModel = TVs()
     const retroTVModel = retroTV()
     const cabinetModel = cabinet()
+    const hiText = createText("Hi, I'm Duc!", { size: 0.045 })
+    const introductionText1 = createText('I am a front-end developer.', { size: 0.045 })
+    const introductionText2 = createText(
+        'Specializing in Frontend, particularly proficient\nin ReactJS/NextJS with TypeScript\n(with strong type coding style).',
+        { size: 0.045 }
+    )
+    const introductionText3 = createText(
+        "I'm keen on enhancing my Frontend skills\nand aspiring to lead a team.",
+        { size: 0.045 }
+    )
     introductionGroup.position.x = BASE_X + 5
     introductionGroup.position.z = BASE_Z - 20
 
@@ -75,14 +84,26 @@ export const createIntroductionSection = async (scene: THREE.Scene) => {
     flatTVModel.position.x = 30
     flatTVModel.rotateY(ONE_DEGREE_IN_RADIANS * 180)
 
-    // introductionGroup.add(TVsModel)
-    // introductionGroup.add(retroTVModel)
+    hiText.rotateY(ONE_DEGREE_IN_RADIANS * 90)
+    hiText.position.y = 0.95
+    hiText.position.x = 0.05
+    hiText.position.z = 0.8
+
+    introductionText1.position.y = -0.15
+
+    introductionText2.position.y = -0.12
+
+    introductionText3.position.y = -0.33
+
+    hiText.add(introductionText1)
+    introductionText1.add(introductionText2)
+    introductionText2.add(introductionText3)
+    flatTVModel.add(hiText)
 
     introductionGroup.add(TVWithCabinet)
     introductionGroup.add(TVsModel)
     introductionGroup.add(retroTVModel)
     introductionGroup.add(flatTVModel)
-    introductionGroup.add(axesHelper)
     scene.add(introductionGroup)
     scene.add(FPTClassroom)
 }

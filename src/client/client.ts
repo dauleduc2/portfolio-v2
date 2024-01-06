@@ -15,6 +15,8 @@ import { KeyDisplay } from './utils/key'
 import { addTrees } from './material/tree'
 import { addWoodenSign } from './material/woodenSign'
 import { createIntroductionSection } from './sections/introduction'
+import { createExperienceSection } from './sections/experience/experience'
+import { addFloors } from './material/floor'
 const scene = new THREE.Scene()
 const camera = createCamera()
 const renderer = createRenderer()
@@ -40,15 +42,18 @@ const plane = createPlane()
 scene.add(plane)
 
 // tree
-addTrees(scene)
+// addTrees(scene)
 
 // wooden sign
 addWoodenSign(scene)
 
+// add floor
+addFloors(scene)
+
 // add introduction section
-
 createIntroductionSection(scene)
-
+// add experience section
+createExperienceSection(scene)
 // CONTROLS
 const orbitControls = new OrbitControls(camera, renderer.domElement)
 orbitControls.minDistance = 5
