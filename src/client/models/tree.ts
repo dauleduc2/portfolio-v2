@@ -170,6 +170,7 @@ export const createBackgroundDecorationItems = async () => {
         const christmasTreeGLTF = await gltfLoader.loadAsync('models/tree/christmas_tree.glb')
         christmasTree = christmasTreeGLTF.scene
         christmasTree.scale.set(CHRISTMAS_TREE_SCALE, CHRISTMAS_TREE_SCALE, CHRISTMAS_TREE_SCALE)
+        christmasTree.position.y = 7
         christmasTree.traverse((child) => {
             if (child instanceof THREE.Mesh) {
                 child.castShadow = true

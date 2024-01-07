@@ -4,7 +4,6 @@ import * as THREE from 'three'
 const loader = new GLTFLoader()
 
 let woodenSign: THREE.Group<THREE.Object3DEventMap>
-let brickWall: THREE.Group<THREE.Object3DEventMap>
 let stoneWall: THREE.Group<THREE.Object3DEventMap>
 
 export const createWallModel = async () => {
@@ -15,18 +14,6 @@ export const createWallModel = async () => {
         woodenSign.position.y = -0.35
 
         woodenSign.traverse((child) => {
-            if (child instanceof THREE.Mesh) {
-                child.castShadow = true
-                child.receiveShadow = true
-            }
-        })
-    }
-
-    if (!brickWall) {
-        const brickWallGLTF = await loader.loadAsync('/models/wall/brick_wall.glb')
-        brickWall = brickWallGLTF.scene
-
-        brickWall.traverse((child) => {
             if (child instanceof THREE.Mesh) {
                 child.castShadow = true
                 child.receiveShadow = true
@@ -53,17 +40,11 @@ export const createWallModel = async () => {
         return cloneWoodenSign
     }
 
-    const createBrickWall = () => {
-        const cloneBrickWall = brickWall.clone()
-
-        return cloneBrickWall
-    }
-
     const createStoneWall = () => {
         const cloneStoneWall = stoneWall.clone()
 
         return cloneStoneWall
     }
 
-    return { woodenWall: createWoodenSign, brickWall: createBrickWall, stoneWall: createStoneWall }
+    return { woodenWall: createWoodenSign, stoneWall: createStoneWall }
 }

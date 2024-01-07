@@ -11,7 +11,7 @@ export const SPRING_TREE_SCALE = 0.2
 export const NO_LEAF_TREE_SCALE = 8
 export const AUTUMN_TREE_SCALE = 10
 export const BUSH_SNOW_SCALE = 5
-export const CHRISTMAS_TREE_SCALE = 1
+export const CHRISTMAS_TREE_SCALE = 20
 export const FALL_TREE_SCALE = 10
 export const PINE_SNOW_TREE_SCALE = 35
 export const SNOWMAN_SCALE = 1
@@ -251,5 +251,12 @@ export const TREE_LIST: TreeItem[] = [
             z: -STONE_FLOOR_SIZE * 1,
         },
         type: 'snowTree',
+    },
+    {
+        position: {
+            x: -STONE_FLOOR_SIZE * 5,
+            z: -STONE_FLOOR_SIZE * 6,
+        },
+        type: 'christmasTree',
     },
 ]
