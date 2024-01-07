@@ -17,6 +17,8 @@ import { addWoodenSign } from './material/woodenSign'
 import { createIntroductionSection } from './sections/introduction'
 import { createExperienceSection } from './sections/experience/experience'
 import { addFloors } from './material/floor'
+import { addBackground } from './material/background'
+
 const scene = new THREE.Scene()
 const camera = createCamera()
 const renderer = createRenderer()
@@ -31,6 +33,21 @@ const render = () => {
 // on resize handler
 handleResize(camera, renderer, render)
 
+// background
+addBackground(scene)
+
+const backgroundLoader = new THREE.CubeTextureLoader().setPath('/background/')
+const backgroundTexture = backgroundLoader.load([
+    'nebula.jpg', // left
+    'stars.jpg', // right
+    'stars.jpg', //top
+    'stars.jpg', // bottom
+    'stars.jpg', // backward
+    'stars.jpg', // forward
+])
+
+scene.background = backgroundTexture
+
 // light
 const { ambientLight, dirLight } = createLight()
 scene.add(ambientLight)
@@ -38,7 +55,6 @@ scene.add(dirLight)
 
 // plane
 const plane = createPlane()
-
 scene.add(plane)
 
 // tree
