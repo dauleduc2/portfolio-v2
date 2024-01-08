@@ -9,12 +9,9 @@ export const addTrees = async (scene: THREE.Scene) => {
         appleTree,
         pineTreeGroup,
         treeAndRock,
-        bonsaiTree,
-        noLeafSpringTree,
         springTree,
         autumnTree,
         bushSnow,
-        christmasTree,
         fallTree,
         pineSnowTree,
         snowMan,
@@ -39,12 +36,7 @@ export const addTrees = async (scene: THREE.Scene) => {
             case 'treeAndRock':
                 treeMesh = treeAndRock.clone()
                 break
-            case 'bonsai':
-                treeMesh = bonsaiTree.clone()
-                break
-            case 'noLeafSpringTree':
-                treeMesh = noLeafSpringTree.clone()
-                break
+
             case 'spring':
                 treeMesh = springTree.clone()
                 break
@@ -54,9 +46,7 @@ export const addTrees = async (scene: THREE.Scene) => {
             case 'bushSnow':
                 treeMesh = bushSnow.clone()
                 break
-            case 'christmasTree':
-                treeMesh = christmasTree.clone()
-                break
+
             case 'fallTree':
                 treeMesh = fallTree.clone()
                 break
@@ -84,9 +74,9 @@ export const addTrees = async (scene: THREE.Scene) => {
             treeMesh.position.z = position.z
 
             if (rotation) {
-                treeMesh.rotation.x = rotation.x || 0
-                treeMesh.rotation.y = rotation.y || 0
-                treeMesh.rotation.z = rotation.z || 0
+                treeMesh.rotation.x = rotation.x ?? 0
+                treeMesh.rotation.y = rotation.y ?? 0
+                treeMesh.rotation.z = rotation.z ?? 0
             }
             scene.add(treeMesh)
         }

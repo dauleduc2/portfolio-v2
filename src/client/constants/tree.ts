@@ -6,9 +6,7 @@ export const SING_TREE_SCALE = 0.1
 export const APPLE_TREE_SCALE = 10
 export const PINE_TREE_GROUP_SCALE = 22
 export const TREE_AND_ROCK_SCALE = 1
-export const BONSAI_TREE_SCALE = 13
 export const SPRING_TREE_SCALE = 0.2
-export const NO_LEAF_TREE_SCALE = 8
 export const AUTUMN_TREE_SCALE = 10
 export const BUSH_SNOW_SCALE = 5
 export const CHRISTMAS_TREE_SCALE = 20
@@ -26,14 +24,14 @@ export const TREE_LIST: TreeItem[] = [
             x: STONE_FLOOR_SIZE * 3,
             z: -STONE_FLOOR_SIZE * 1,
         },
-        type: 'bonsai',
+        type: 'spring',
     },
     {
         position: {
             x: STONE_FLOOR_SIZE * 1,
             z: -STONE_FLOOR_SIZE * 3,
         },
-        type: 'bonsai',
+        type: 'spring',
         rotation: {
             y: ONE_DEGREE_IN_RADIANS * 90,
         },
@@ -41,16 +39,9 @@ export const TREE_LIST: TreeItem[] = [
     {
         position: {
             x: STONE_FLOOR_SIZE * 1,
-            z: -STONE_FLOOR_SIZE * 4,
-        },
-        type: 'noLeafSpringTree',
-    },
-    {
-        position: {
-            x: STONE_FLOOR_SIZE * 1,
             z: -STONE_FLOOR_SIZE * 5,
         },
-        type: 'noLeafSpringTree',
+        type: 'spring',
     },
     {
         position: {
@@ -251,12 +242,5 @@ export const TREE_LIST: TreeItem[] = [
             z: -STONE_FLOOR_SIZE * 1,
         },
         type: 'snowTree',
-    },
-    {
-        position: {
-            x: -STONE_FLOOR_SIZE * 5,
-            z: -STONE_FLOOR_SIZE * 6,
-        },
-        type: 'christmasTree',
     },
 ]

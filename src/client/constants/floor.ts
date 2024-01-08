@@ -1,6 +1,4 @@
-import * as THREE from 'three'
-
-export const STONE_FLOOR_SCALE = 6
+export const STONE_FLOOR_SCALE = 7
 
 export const STONE_FLOOR_SIZE = 12
 export const STONE_FLOOR_LOCATION = [
