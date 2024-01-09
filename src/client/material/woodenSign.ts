@@ -5,7 +5,7 @@ export const addWoodenSign = async (scene: THREE.Scene) => {
     const { woodenSign } = await createWoodenSignModel()
     const skillsWoodenSign = woodenSign('Skills')
     const experienceWoodenSign = woodenSign('Experience')
-    const certificateWoodenSign = woodenSign('Certificate')
+    const certificateWoodenSign = woodenSign('Awards')
     const introductionWoodenSign = woodenSign('Introduction')
 
     skillsWoodenSign.position.set(-8, 0, -8)

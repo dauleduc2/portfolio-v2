@@ -26,8 +26,11 @@ export const createBoardModel = async () => {
         whiteboard.scale.set(WHITE_BOARD_SCALE, WHITE_BOARD_SCALE + 1, WHITE_BOARD_SCALE)
     }
 
-    const createWhiteboard = () => {
+    const createWhiteboardWithText = (text: string | undefined) => {
         const cloneWhiteboard = whiteboard.clone()
+        const textModel = createTitleText(text ?? '', { color: 'black', size: 0.05 })
+        textModel.geometry.center()
+        cloneWhiteboard.add(textModel)
 
         return cloneWhiteboard
     }
@@ -124,7 +127,7 @@ export const createBoardModel = async () => {
     }
 
     return {
-        whiteboard: createWhiteboard,
+        whiteboard: createWhiteboardWithText,
         whiteboardWithProject: createWhiteboardWithProject,
     }
 }

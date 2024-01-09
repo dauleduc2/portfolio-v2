@@ -18,6 +18,7 @@ import { createIntroductionSection } from './sections/introduction'
 import { createExperienceSection } from './sections/experience/experience'
 import { addFloors } from './material/floor'
 import { addBackground } from './material/background'
+import { createCertificateSection } from './sections/certificate'
 
 const scene = new THREE.Scene()
 const camera = createCamera()
@@ -70,6 +71,9 @@ addFloors(scene)
 createIntroductionSection(scene)
 // add experience section
 createExperienceSection(scene)
+// add certificate section
+createCertificateSection(scene)
+
 // CONTROLS
 const orbitControls = new OrbitControls(camera, renderer.domElement)
 orbitControls.minDistance = 5

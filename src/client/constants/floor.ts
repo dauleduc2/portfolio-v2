@@ -259,4 +259,46 @@ export const STONE_FLOOR_LOCATION = [
         x: 0,
         z: STONE_FLOOR_SIZE * 8,
     },
+    {
+        x: 0,
+        z: STONE_FLOOR_SIZE * 9,
+    },
+    {
+        x: 0,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    // certificate to right
+    {
+        x: -STONE_FLOOR_SIZE,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 2,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 3,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 4,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    // certificate to left
+    {
+        x: STONE_FLOOR_SIZE,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: STONE_FLOOR_SIZE * 2,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: STONE_FLOOR_SIZE * 3,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: STONE_FLOOR_SIZE * 4,
+        z: STONE_FLOOR_SIZE * 10,
+    },
 ]

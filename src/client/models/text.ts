@@ -56,7 +56,7 @@ export const createTextModel = async () => {
 
     const createTitleText = (
         text: string,
-        { color = 'white', type = 'regular', ...textOptions }: TextModelOptions = {}
+        { color = 'white', type = 'bold', ...textOptions }: TextModelOptions = {}
     ) => {
         const font = getFontByType(type)
 
