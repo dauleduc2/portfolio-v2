@@ -48,6 +48,27 @@ export const STONE_FLOOR_LOCATION = [
         x: -STONE_FLOOR_SIZE * 4,
         z: -STONE_FLOOR_SIZE * 6,
     },
+    {
+        x: -STONE_FLOOR_SIZE * 5,
+        z: -STONE_FLOOR_SIZE * 6,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 6,
+        z: -STONE_FLOOR_SIZE * 6,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 7,
+        z: -STONE_FLOOR_SIZE * 6,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 8,
+        z: -STONE_FLOOR_SIZE * 6,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: -STONE_FLOOR_SIZE * 6,
+    },
+
     // To experience
     {
         x: STONE_FLOOR_SIZE,
@@ -225,6 +246,73 @@ export const STONE_FLOOR_LOCATION = [
         x: -STONE_FLOOR_SIZE * 8,
         z: 0,
     },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: 0,
+    },
+
+    // Skills to left
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: STONE_FLOOR_SIZE,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: STONE_FLOOR_SIZE * 2,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: STONE_FLOOR_SIZE * 3,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: STONE_FLOOR_SIZE * 4,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: STONE_FLOOR_SIZE * 5,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: STONE_FLOOR_SIZE * 6,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: STONE_FLOOR_SIZE * 7,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: STONE_FLOOR_SIZE * 8,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: STONE_FLOOR_SIZE * 9,
+    },
+    // Skills to right
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: -STONE_FLOOR_SIZE,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: -STONE_FLOOR_SIZE * 2,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: -STONE_FLOOR_SIZE * 3,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: -STONE_FLOOR_SIZE * 4,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: -STONE_FLOOR_SIZE * 5,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: -STONE_FLOOR_SIZE * 6,
+    },
 
     // Certificate Path
     {
@@ -284,6 +372,27 @@ export const STONE_FLOOR_LOCATION = [
         x: -STONE_FLOOR_SIZE * 4,
         z: STONE_FLOOR_SIZE * 10,
     },
+    {
+        x: -STONE_FLOOR_SIZE * 5,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 6,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 7,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 8,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: -STONE_FLOOR_SIZE * 9,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+
     // certificate to left
     {
         x: STONE_FLOOR_SIZE,
@@ -299,6 +408,14 @@ export const STONE_FLOOR_LOCATION = [
     },
     {
         x: STONE_FLOOR_SIZE * 4,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: STONE_FLOOR_SIZE * 5,
+        z: STONE_FLOOR_SIZE * 10,
+    },
+    {
+        x: STONE_FLOOR_SIZE * 6,
         z: STONE_FLOOR_SIZE * 10,
     },
 ]

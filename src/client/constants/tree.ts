@@ -109,8 +109,8 @@ export const TREE_LIST: TreeItem[] = [
     },
     {
         position: {
-            x: -STONE_FLOOR_SIZE * 3.5 * 2,
-            z: STONE_FLOOR_SIZE * 4.5 + 3,
+            x: -STONE_FLOOR_SIZE * 3.5 * 1.5,
+            z: STONE_FLOOR_SIZE * 4.5,
         },
         type: 'treeAndRock',
         rotation: {
